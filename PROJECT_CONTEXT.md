@@ -104,7 +104,9 @@ hl2_loadout/
 {
   name: "Weapon Name",
   warbond: "warbond-slug",
-  type: "Assault Rifle|Marksman Rifle|...", // Primary weapons only (optional field)
+  type: "Assault Rifle|Marksman Rifle|...", // For primary weapons: official in-game category
+  // For secondary weapons: "Pistol", "Revolver", "Special", "Melee"
+  // For grenades: "Standard", "Special"
   light: "green|yellow|red",      // vs light enemies
   medium: "green|yellow|red",     // vs medium enemies  
   heavy: "green|yellow|red",      // vs heavy enemies
@@ -120,15 +122,27 @@ hl2_loadout/
 }
 ```
 
-### Primary Weapon Type Categories
-Official Helldivers 2 weapon types used for grouping:
-- **Assault Rifle**: AR-23 variants, BR-14, AR-16, etc.
-- **Marksman Rifle**: R-63 variants, R-2124 Constitution, R-36 Eruptor, etc.
-- **Submachine Gun**: SMG-37, MP-98, SMG-72, SMG-32, etc.
-- **Shotgun**: SG-225 variants, SG-8 variants, SG-451, SG-20, etc.
-- **Explosive**: Jar-5 Dominator, CB-9 Exploding Crossbow, etc.
-- **Energy-Based**: Las-5, Las-16, Plas-1, ARC-12, etc.
-- **Special**: Flam-66 Torcher and other unique weapon types
+
+### Official In-Game Weapon Categories
+
+#### Primary Weapons
+- **Assault Rifle**
+- **Marksman Rifle**
+- **Submachine Gun**
+- **Shotgun**
+- **Explosive**
+- **Energy-Based**
+- **Special**
+
+#### Secondary Weapons
+- **Pistol**
+- **Revolver**
+- **Special**
+- **Melee**
+
+#### Grenades
+- **Standard**
+- **Special**
 
 ### Warbond Identifiers
 - `"helldivers-mobilize"` - Standard (free)

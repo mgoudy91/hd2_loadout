@@ -223,134 +223,134 @@ const weapons = {
     ],
     secondary: [
         // Free/Base Game
-        { name: "P-2 Peacemaker", warbond: "free",
+  { name: "P-2 Peacemaker", warbond: "free", type: "Pistol",
           light: "green", medium: "red", heavy: "red",
           bugnest: "red", charger: "red", biletitan: "red",
           factory: "red", hulk: "red", strider: "red",
           warpship: "red", harvester: "red", voteless: "green" },
-        { name: "P-19 Redeemer", warbond: "free",
+  { name: "P-19 Redeemer", warbond: "free", type: "Pistol",
           light: "green", medium: "red", heavy: "red",
           bugnest: "red", charger: "red", biletitan: "red",
           factory: "red", hulk: "red", strider: "red",
           warpship: "red", harvester: "red", voteless: "green" },
           
         // Steeled Veterans
-        { name: "P-4 Senator", warbond: "steeled-veterans",
+  { name: "P-4 Senator", warbond: "steeled-veterans", type: "Revolver",
           light: "green", medium: "green", heavy: "green",
           bugnest: "red", charger: "yellow", biletitan: "yellow",
           factory: "red", hulk: "yellow", strider: "yellow",
           warpship: "red", harvester: "yellow", voteless: "green" },
           
         // Cutting Edge
-        { name: "Las-7 Dagger", warbond: "cutting-edge",
+  { name: "Las-7 Dagger", warbond: "cutting-edge", type: "Special",
           light: "green", medium: "red", heavy: "red",
           bugnest: "red", charger: "red", biletitan: "red",
           factory: "red", hulk: "red", strider: "red",
           warpship: "red", harvester: "red", voteless: "green" },
           
         // Democratic Detonation
-        { name: "GP-31 Grenade Pistol", warbond: "democratic-detonation",
+  { name: "GP-31 Grenade Pistol", warbond: "democratic-detonation", type: "Special",
           light: "green", medium: "green", heavy: "red",
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "yellow",
           warpship: "green", harvester: "yellow", voteless: "green" },
           
         // Polar Patriots
-        { name: "P-113 Verdict", warbond: "polar-patriots",
+  { name: "P-113 Verdict", warbond: "polar-patriots", type: "Pistol",
           light: "green", medium: "green", heavy: "red",
           bugnest: "red", charger: "yellow", biletitan: "red",
           factory: "red", hulk: "yellow", strider: "yellow",
           warpship: "red", harvester: "yellow", voteless: "green" },
           
         // Viper Commandos
-        { name: "SG-22 Bushwhacker", warbond: "viper-commandos",
+  { name: "SG-22 Bushwhacker", warbond: "viper-commandos", type: "Special",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
           
         // Freedom's Flame
-        { name: "P-72 Crisper", warbond: "freedom-flame",
+  { name: "P-72 Crisper", warbond: "freedom-flame", type: "Special",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
           
         // Chemical Agents
-        { name: "P-11 Stim Pistol", warbond: "chemical-agents",
+  { name: "P-11 Stim Pistol", warbond: "chemical-agents", type: "Special",
           light: "red", medium: "red", heavy: "red",
           bugnest: "red", charger: "red", biletitan: "red",
           factory: "red", hulk: "red", strider: "red",
           warpship: "red", harvester: "red", voteless: "green" },
           
         // Truth Enforcers
-        { name: "Plas-15 Loyalist", warbond: "truth-enforcers",
+  { name: "Plas-15 Loyalist", warbond: "truth-enforcers", type: "Special",
           light: "green", medium: "green", heavy: "red",
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "yellow",
           warpship: "green", harvester: "yellow", voteless: "green" },
           
         // Urban Legends
-        { name: "CQC-19 Stun Lance", warbond: "urban-legends",
+  { name: "CQC-19 Stun Lance", warbond: "urban-legends", type: "Melee",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
           
         // Servants of Freedom
-        { name: "GP-31 Ultimatum", warbond: "servants-freedom",
+  { name: "GP-31 Ultimatum", warbond: "servants-freedom", type: "Special",
           light: "green", medium: "green", heavy: "green",
           bugnest: "green", charger: "green", biletitan: "green",
           factory: "green", hulk: "green", strider: "green",
           warpship: "green", harvester: "green", voteless: "green" },
           
         // Masters of Ceremony
-        { name: "CQC-2 Saber", warbond: "masters-ceremony",
+  { name: "CQC-2 Saber", warbond: "masters-ceremony", type: "Melee",
           light: "green", medium: "green", heavy: "red",
           bugnest: "red", charger: "yellow", biletitan: "red",
           factory: "red", hulk: "yellow", strider: "yellow",
           warpship: "red", harvester: "yellow", voteless: "green" },
           
         // Control Group Premium Warbond - Placeholder entries (details TBD)
-        { name: "Placeholder Pistol", warbond: "control-group",
+  { name: "Placeholder Pistol", warbond: "control-group", type: "Pistol",
           light: "green", medium: "yellow", heavy: "red",
           bugnest: "red", charger: "yellow", biletitan: "red",
           factory: "red", hulk: "yellow", strider: "red",
           warpship: "red", harvester: "red", voteless: "green" },
         
         // ODST Legendary Warbond (Halo Crossover - 1,500 SC)
-        { name: "M6C/SOCOM Pistol", warbond: "odst",
+  { name: "M6C/SOCOM Pistol", warbond: "odst", type: "Pistol",
           light: "green", medium: "green", heavy: "red",
           bugnest: "red", charger: "yellow", biletitan: "red",
           factory: "red", hulk: "yellow", strider: "red",
           warpship: "red", harvester: "red", voteless: "green" },
         
         // Dust Devils Premium Warbond - Placeholder entries (details TBD)
-        { name: "Dust Devil Revolver", warbond: "dust-devils",
+  { name: "Dust Devil Revolver", warbond: "dust-devils", type: "Revolver",
           light: "green", medium: "yellow", heavy: "red",
           bugnest: "red", charger: "yellow", biletitan: "red",
           factory: "red", hulk: "yellow", strider: "red",
           warpship: "red", harvester: "red", voteless: "green" },
           
         // Borderline Justice
-        { name: "Las-58 Talon", warbond: "borderline-justice",
+  { name: "Las-58 Talon", warbond: "borderline-justice", type: "Special",
           light: "green", medium: "green", heavy: "red",
           bugnest: "red", charger: "yellow", biletitan: "red",
           factory: "red", hulk: "yellow", strider: "yellow",
           warpship: "red", harvester: "yellow", voteless: "green" },
-        { name: "TED-63 Dynamite", warbond: "borderline-justice",
+  { name: "TED-63 Dynamite", warbond: "borderline-justice", type: "Special",
           light: "green", medium: "yellow", heavy: "red",
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "yellow",
           warpship: "green", harvester: "yellow", voteless: "green" },
           
         // Super Store Items
-        { name: "CQC-30 Stun Baton", warbond: "free",
+  { name: "CQC-30 Stun Baton", warbond: "free", type: "Melee",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
-        { name: "CQC-5 Combat Hatchet", warbond: "free",
+  { name: "CQC-5 Combat Hatchet", warbond: "free", type: "Melee",
           light: "green", medium: "green", heavy: "red",
           bugnest: "red", charger: "yellow", biletitan: "red",
           factory: "red", hulk: "yellow", strider: "yellow",
@@ -358,92 +358,92 @@ const weapons = {
     ],
     grenade: [
         // Free/Base Game
-        { name: "G-12 High Explosive", warbond: "free",
+  { name: "G-12 High Explosive", warbond: "free", type: "Standard",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
-        { name: "G-16 Impact", warbond: "free",
+  { name: "G-16 Impact", warbond: "free", type: "Standard",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
-        { name: "G-6 Frag", warbond: "free",
+  { name: "G-6 Frag", warbond: "free", type: "Standard",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
-        { name: "G-3 Smoke", warbond: "free",
+  { name: "G-3 Smoke", warbond: "free", type: "Standard",
           light: "red", medium: "red", heavy: "red",
           bugnest: "red", charger: "red", biletitan: "red",
           factory: "red", hulk: "red", strider: "red",
           warpship: "red", harvester: "red", voteless: "green" },
           
         // Steeled Veterans
-        { name: "G-10 Incendiary", warbond: "steeled-veterans",
+  { name: "G-10 Incendiary", warbond: "steeled-veterans", type: "Standard",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
           
         // Cutting Edge
-        { name: "G-23 Stun", warbond: "cutting-edge",
+  { name: "G-23 Stun", warbond: "cutting-edge", type: "Special",
           light: "yellow", medium: "yellow", heavy: "yellow",
           bugnest: "yellow", charger: "yellow", biletitan: "yellow",
           factory: "yellow", hulk: "yellow", strider: "yellow",
           warpship: "yellow", harvester: "yellow", voteless: "green" },
           
         // Democratic Detonation
-        { name: "G-123 Thermite", warbond: "democratic-detonation",
+  { name: "G-123 Thermite", warbond: "democratic-detonation", type: "Standard",
           light: "green", medium: "yellow", heavy: "green",
           bugnest: "yellow", charger: "green", biletitan: "green",
           factory: "yellow", hulk: "green", strider: "green",
           warpship: "yellow", harvester: "green", voteless: "yellow" },
           
         // Polar Patriots
-        { name: "G-13 Incendiary Impact", warbond: "polar-patriots",
+  { name: "G-13 Incendiary Impact", warbond: "polar-patriots", type: "Standard",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
           
         // Viper Commandos
-        { name: "K-2 Throwing Knife", warbond: "viper-commandos",
+  { name: "K-2 Throwing Knife", warbond: "viper-commandos", type: "Special",
           light: "green", medium: "red", heavy: "red",
           bugnest: "red", charger: "red", biletitan: "red",
           factory: "red", hulk: "red", strider: "red",
           warpship: "red", harvester: "red", voteless: "green" },
           
         // Chemical Agents
-        { name: "G-4 Gas", warbond: "chemical-agents",
+  { name: "G-4 Gas", warbond: "chemical-agents", type: "Special",
           light: "green", medium: "green", heavy: "red",
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "yellow",
           warpship: "green", harvester: "yellow", voteless: "green" },
           
         // Servants of Freedom
-        { name: "G-50 Seeker", warbond: "servants-freedom",
+  { name: "G-50 Seeker", warbond: "servants-freedom", type: "Special",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
           
         // Masters of Ceremony
-        { name: "G-142 Pyrotech", warbond: "masters-ceremony",
+  { name: "G-142 Pyrotech", warbond: "masters-ceremony", type: "Special",
           light: "green", medium: "red", heavy: "red",
           bugnest: "green", charger: "red", biletitan: "red",
           factory: "green", hulk: "red", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
           
         // Control Group Premium Warbond - Placeholder entries (details TBD)
-        { name: "Placeholder Grenade", warbond: "control-group",
+  { name: "Placeholder Grenade", warbond: "control-group", type: "Standard",
           light: "green", medium: "yellow", heavy: "red",
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "red",
           warpship: "green", harvester: "red", voteless: "green" },
         
         // Dust Devils Premium Warbond - Placeholder entries (details TBD)
-        { name: "Dust Devil Explosive", warbond: "dust-devils",
+  { name: "Dust Devil Explosive", warbond: "dust-devils", type: "Standard",
           light: "green", medium: "yellow", heavy: "red",
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "red",

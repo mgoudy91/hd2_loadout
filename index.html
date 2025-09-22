@@ -480,28 +480,86 @@
                         }
                     });
                 } else {
-                    // Standard handling for other categories
+                    // Group secondary and grenade by type, stratagems remain flat
                     const categoryName = category === 'stratagem' ? 
                         `STRATAGEMS (${selectedLoadout.stratagems.length}/4 selected)` : 
                         category.toUpperCase() + ' WEAPONS';
                     bodyHTML += `<tr class="category-header ${isCollapsed ? 'collapsed-section' : ''}" data-section="${category}"><td colspan="${columns.length + 1}">${categoryName}${collapseIndicator}</td></tr>`;
 
-                    weapons[category].filter(w => selectedWarbonds.includes(w.warbond)).forEach(weapon => {
-                        const isWeaponSelected = category === 'stratagem' ? 
-                            selectedLoadout.stratagems.includes(weapon.name) : 
-                            selectedLoadout[category] === weapon.name;
-                        
-                        bodyHTML += `
-                            <tr class="weapon-row ${isWeaponSelected ? 'selected-row' : ''} ${isCollapsed ? 'collapsed-section' : ''}" 
-                                data-category="${category}" 
-                                data-weapon="${weapon.name}"
-                                data-section="${category}"
-                                style="cursor: pointer;">
-                                <td class="weapon-name">${weapon.name}${weapon.slot ? getSlotBadge(weapon.slot) : ''}</td>
-                                ${columns.map(c => `<td class="${weapon[c.key]}"></td>`).join('')}
-                            </tr>
-                        `;
-                    });
+                    if (category === 'secondary') {
+                        // Official in-game order for secondary types
+                        const typeOrder = ['Pistol', 'Revolver', 'Special', 'Melee'];
+                        const filtered = weapons[category].filter(w => selectedWarbonds.includes(w.warbond));
+                        const weaponsByType = {};
+                        filtered.forEach(weapon => {
+                            const type = weapon.type || 'Special';
+                            if (!weaponsByType[type]) weaponsByType[type] = [];
+                            weaponsByType[type].push(weapon);
+                        });
+                        typeOrder.forEach(type => {
+                            if (weaponsByType[type] && weaponsByType[type].length > 0) {
+                                bodyHTML += `<tr class="weapon-type-header ${isCollapsed ? 'collapsed-section' : ''}" data-section="${category}" style="background: #3a3a3a; font-weight: 600; color: #ffd700;"><td colspan="${columns.length + 1}">${type}</td></tr>`;
+                                weaponsByType[type].forEach(weapon => {
+                                    const isWeaponSelected = selectedLoadout[category] === weapon.name;
+                                    bodyHTML += `
+                                        <tr class="weapon-row ${isWeaponSelected ? 'selected-row' : ''} ${isCollapsed ? 'collapsed-section' : ''}" 
+                                            data-category="${category}" 
+                                            data-weapon="${weapon.name}"
+                                            data-section="${category}"
+                                            style="cursor: pointer;">
+                                            <td class="weapon-name">${weapon.name}${weapon.slot ? getSlotBadge(weapon.slot) : ''}</td>
+                                            ${columns.map(c => `<td class="${weapon[c.key]}"></td>`).join('')}
+                                        </tr>
+                                    `;
+                                });
+                            }
+                        });
+                    } else if (category === 'grenade') {
+                        // Official in-game order for grenade types
+                        const typeOrder = ['Standard', 'Special'];
+                        const filtered = weapons[category].filter(w => selectedWarbonds.includes(w.warbond));
+                        const weaponsByType = {};
+                        filtered.forEach(weapon => {
+                            const type = weapon.type || 'Standard';
+                            if (!weaponsByType[type]) weaponsByType[type] = [];
+                            weaponsByType[type].push(weapon);
+                        });
+                        typeOrder.forEach(type => {
+                            if (weaponsByType[type] && weaponsByType[type].length > 0) {
+                                bodyHTML += `<tr class="weapon-type-header ${isCollapsed ? 'collapsed-section' : ''}" data-section="${category}" style="background: #3a3a3a; font-weight: 600; color: #ffd700;"><td colspan="${columns.length + 1}">${type}</td></tr>`;
+                                weaponsByType[type].forEach(weapon => {
+                                    const isWeaponSelected = selectedLoadout[category] === weapon.name;
+                                    bodyHTML += `
+                                        <tr class="weapon-row ${isWeaponSelected ? 'selected-row' : ''} ${isCollapsed ? 'collapsed-section' : ''}" 
+                                            data-category="${category}" 
+                                            data-weapon="${weapon.name}"
+                                            data-section="${category}"
+                                            style="cursor: pointer;">
+                                            <td class="weapon-name">${weapon.name}${weapon.slot ? getSlotBadge(weapon.slot) : ''}</td>
+                                            ${columns.map(c => `<td class="${weapon[c.key]}"></td>`).join('')}
+                                        </tr>
+                                    `;
+                                });
+                            }
+                        });
+                    } else {
+                        // Stratagems and any other categories remain flat
+                        weapons[category].filter(w => selectedWarbonds.includes(w.warbond)).forEach(weapon => {
+                            const isWeaponSelected = category === 'stratagem' ? 
+                                selectedLoadout.stratagems.includes(weapon.name) : 
+                                selectedLoadout[category] === weapon.name;
+                            bodyHTML += `
+                                <tr class="weapon-row ${isWeaponSelected ? 'selected-row' : ''} ${isCollapsed ? 'collapsed-section' : ''}" 
+                                    data-category="${category}" 
+                                    data-weapon="${weapon.name}"
+                                    data-section="${category}"
+                                    style="cursor: pointer;">
+                                    <td class="weapon-name">${weapon.name}${weapon.slot ? getSlotBadge(weapon.slot) : ''}</td>
+                                    ${columns.map(c => `<td class="${weapon[c.key]}"></td>`).join('')}
+                                </tr>
+                            `;
+                        });
+                    }
                 }
             });
 
