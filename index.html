@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helldivers 2 Loadout Builder</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .controls label {
+            font-size: 16px;
+            margin-right: 10px;
+            color: #ffd700;
+        }
+        
+        .controls select {
+            font-size: 14px;
+            padding: 6px 12px;
+            background: #3a3a3a;
+            color: #e0e0e0;
+            border: 2px solid #ffd700;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .warbond-section {
+            margin-bottom: 15px;
+        }
+        
+        .warning-box {
+            background: #4a2d2d;
+            border: 2px solid #ff4444;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 800px;
+            display: none;
+        }
+        
+        .warning-box.show {
+            display: block;
+        }
+        
+        .warning-box h3 {
+            color: #ff6666;
+            margin-top: 0;
+        }
+        
+        .warning-item {
+            margin: 8px 0;
+            padding: 8px;
+            background: #2a1a1a;
+            border-radius: 4px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 30px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: #2a2a2a;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        th {
+            background: #3a3a3a;
+            color: #ffd700;
+            padding: 10px 6px;
+            text-align: left;
+            border: 1px solid #4a4a4a;
+            font-weight: 600;
+            font-size: 13px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        td {
+            padding: 8px 6px;
+            border: 1px solid #4a4a4a;
+            font-size: 13px;
+        }
+        
+        .category-header {
+            background: #454545;
+            font-weight: 600;
+            color: #ffd700;
+        }
+        
+        .weapon-name {
+            font-weight: 500;
+            min-width: 180px;
+        }
+        
+        tr:hover {
+            background: #333;
+        }
+        
+        .header-group {
+            background: #505050;
+            text-align: center;
+        }
+        
+        .green { background-color: #2d5016; color: white; text-align: center; }
+        .yellow { background-color: #5c4a1a; color: white; text-align: center; }
+        .red { background-color: #4a1616; color: white; text-align: center; }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .selected-row {
+            background: #2d4a2d !important;
+        }
+        
+        .summary-row {
+            background: #1a3a1a;
+            font-weight: 600;
+        }
+        
+        .slot-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            margin-left: 5px;
+            background: #555;
+        }
+        
+        .backpack-badge { background: #8b4513; }
+        .support-badge { background: #4169e1; }
+    </style>
+</head>
+<body>
+    <h1>🎖️ Helldivers 2 Loadout Builder 🎖️</h1>
+    
+    <div class="controls">
+        <div style="margin-bottom: 10px;">
+            <label for="faction-select">Faction:</label>
+            <select id="faction-select">
+                <option value="terminids" selected>Terminids</option>
+                <option value="automatons">Automatons</option>
+                <option value="illuminates">Illuminates</option>
+                <option value="all">All Factions</option>
+            </select>
+        </div>
+        
+        <div class="warbond-section">
+            <label>Select Your Warbonds:</label><br>
+            <label><input type="checkbox" class="warbond-filter" value="free" checked> Base Game (Free)</label>
+            <label><input type="checkbox" class="warbond-filter" value="steeled-veterans"> Steeled Veterans</label>
+            <label><input type="checkbox" class="warbond-filter" value="cutting-edge"> Cutting Edge</label>
+            <label><input type="checkbox" class="warbond-filter" value="democratic-detonation"> Democratic Detonation</label>
+            <label><input type="checkbox" class="warbond-filter" value="polar-patriots"> Polar Patriots</label>
+            <label><input type="checkbox" class="warbond-filter" value="viper-commandos"> Viper Commandos</label>
+            <label><input type="checkbox" class="warbond-filter" value="freedom-flame"> Freedom's Flame</label>
+            <label><input type="checkbox" class="warbond-filter" value="chemical-agents"> Chemical Agents</label>
+            <label><input type="checkbox" class="warbond-filter" value="truth-enforcers"> Truth Enforcers</label>
+            <label><input type="checkbox" class="warbond-filter" value="urban-legends"> Urban Legends</label>
+            <label><input type="checkbox" class="warbond-filter" value="servants-freedom"> Servants of Freedom</label>
+            <label><input type="checkbox" class="warbond-filter" value="masters-ceremony"> Masters of Ceremony</label>
+            <label><input type="checkbox" class="warbond-filter" value="borderline-justice"> Borderline Justice</label>
+            <label><input type="checkbox" class="warbond-filter" value="control-group"> Control Group</label>
+            <label><input type="checkbox" class="warbond-filter" value="odst"> ODST (Legendary)</label>
+            <label><input type="checkbox" class="warbond-filter" value="dust-devils"> Dust Devils</label>
+        </div>
+    </div>
+    
+    <div class="warning-box" id="warning-box">
+        <h3>⚠️ Loadout Warnings</h3>
+        <div id="warning-content"></div>
+    </div>
+    
+    <div class="table-container">
+        <table id="main-table"></table>
+    </div>
+    
+    <script>
+        // Weapon database with all stats
+        const weapons = {
+            primary: [
+                { name: "AR-23 Liberator", warbond: "free", 
+                  light: "green", medium: "red", heavy: "red",
+                  bugnest: "red", charger: "red", biletitan: "red",
+                  factory: "red", hulk: "red", strider: "red",
+                  warpship: "red", harvester: "red", voteless: "green" },
+                { name: "AR-23P Liberator Penetrator", warbond: "free",
+                  light: "green", medium: "green", heavy: "red",
+                  bugnest: "red", charger: "yellow", biletitan: "red",
+                  factory: "red", hulk: "yellow", strider: "yellow",
+                  warpship: "red", harvester: "yellow", voteless: "green" },
+                { name: "SG-225 Breaker", warbond: "free",
+                  light: "green", medium: "red", heavy: "red",
+                  bugnest: "red", charger: "red", biletitan: "red",
+                  factory: "red", hulk: "red", strider: "red",
+                  warpship: "red", harvester: "red", voteless: "green" },
+                { name: "R-36 Eruptor", warbond: "democratic-detonation",
+                  light: "green", medium: "green", heavy: "red",
+                  bugnest: "green", charger: "yellow", biletitan: "red",
+                  factory: "green", hulk: "yellow", strider: "yellow",
+                  warpship: "green", harvester: "yellow", voteless: "green" }
+            ],
+            secondary: [
+                { name: "P-2 Peacemaker", warbond: "free",
+                  light: "green", medium: "red", heavy: "red",
+                  bugnest: "red", charger: "red", biletitan: "red",
+                  factory: "red", hulk: "red", strider: "red",
+                  warpship: "red", harvester: "red", voteless: "green" },
+                { name: "P-4 Senator", warbond: "steeled-veterans",
+                  light: "green", medium: "green", heavy: "green",
+                  bugnest: "red", charger: "yellow", biletitan: "yellow",
+                  factory: "red", hulk: "yellow", strider: "yellow",
+                  warpship: "red", harvester: "yellow", voteless: "green" },
+                { name: "GP-31 Grenade Pistol", warbond: "democratic-detonation",
+                  light: "green", medium: "green", heavy: "red",
+                  bugnest: "green", charger: "yellow", biletitan: "red",
+                  factory: "green", hulk: "yellow", strider: "yellow",
+                  warpship: "green", harvester: "yellow", voteless: "green" }
+            ],
+            grenade: [
+                { name: "G-12 High Explosive", warbond: "free",
+                  light: "green", medium: "red", heavy: "red",
+                  bugnest: "green", charger: "red", biletitan: "red",
+                  factory: "green", hulk: "red", strider: "red",
+                  warpship: "green", harvester: "red", voteless: "green" },
+                { name: "G-16 Impact", warbond: "free",
+                  light: "green", medium: "red", heavy: "red",
+                  bugnest: "green", charger: "red", biletitan: "red",
+                  factory: "green", hulk: "red", strider: "red",
+                  warpship: "green", harvester: "red", voteless: "green" },
+                { name: "G-123 Thermite", warbond: "freedom-flame",
+                  light: "green", medium: "yellow", heavy: "green",
+                  bugnest: "yellow", charger: "green", biletitan: "green",
+                  factory: "yellow", hulk: "green", strider: "green",
+                  warpship: "yellow", harvester: "green", voteless: "yellow" }
+            ],
+            stratagem: [
+                { name: "Autocannon", warbond: "free", slot: "support+backpack",
+                  light: "green", medium: "green", heavy: "red",
+                  bugnest: "green", charger: "yellow", biletitan: "red",
+                  factory: "green", hulk: "green", strider: "green",
+                  warpship: "green", harvester: "yellow", voteless: "green" },
+                { name: "Railgun", warbond: "free", slot: "support",
+                  light: "yellow", medium: "green", heavy: "green",
+                  bugnest: "red", charger: "green", biletitan: "green",
+                  factory: "red", hulk: "green", strider: "green",
+                  warpship: "red", harvester: "green", voteless: "yellow" },
+                { name: "Orbital Laser", warbond: "free", slot: "none",
+                  light: "green", medium: "green", heavy: "green",
+                  bugnest: "green", charger: "green", biletitan: "green",
+                  factory: "green", hulk: "green", strider: "green",
+                  warpship: "green", harvester: "green", voteless: "green" },
+                { name: "Eagle Airstrike", warbond: "free", slot: "none",
+                  light: "green", medium: "yellow", heavy: "red",
+                  bugnest: "green", charger: "yellow", biletitan: "red",
+                  factory: "green", hulk: "yellow", strider: "yellow",
+                  warpship: "green", harvester: "yellow", voteless: "green" },
+                { name: "Shield Generator Pack", warbond: "free", slot: "backpack",
+                  light: "red", medium: "red", heavy: "red",
+                  bugnest: "red", charger: "red", biletitan: "red",
+                  factory: "red", hulk: "red", strider: "red",
+                  warpship: "red", harvester: "red", voteless: "red" }
+            ]
+        };
+
+        const columnsByFaction = {
+            terminids: [
+                { key: 'light', label: 'Light Pen', group: 'General' },
+                { key: 'medium', label: 'Med Pen', group: 'General' },
+                { key: 'heavy', label: 'Heavy Pen', group: 'General' },
+                { key: 'bugnest', label: 'Bug Nest', group: 'Objectives' },
+                { key: 'charger', label: 'Charger', group: 'Medium' },
+                { key: 'biletitan', label: 'Bile Titan', group: 'Heavy' }
+            ],
+            automatons: [
+                { key: 'light', label: 'Light Pen', group: 'General' },
+                { key: 'medium', label: 'Med Pen', group: 'General' },
+                { key: 'heavy', label: 'Heavy Pen', group: 'General' },
+                { key: 'factory', label: 'Factory', group: 'Objectives' },
+                { key: 'hulk', label: 'Hulk', group: 'Medium' },
+                { key: 'strider', label: 'Strider', group: 'Heavy' }
+            ],
+            illuminates: [
+                { key: 'light', label: 'Light Pen', group: 'General' },
+                { key: 'medium', label: 'Med Pen', group: 'General' },
+                { key: 'heavy', label: 'Heavy Pen', group: 'General' },
+                { key: 'warpship', label: 'Warp Ship', group: 'Objectives' },
+                { key: 'harvester', label: 'Harvester', group: 'Heavy' },
+                { key: 'voteless', label: 'Voteless', group: 'Swarms' }
+            ],
+            all: [
+                { key: 'light', label: 'Light', group: 'General' },
+                { key: 'medium', label: 'Med', group: 'General' },
+                { key: 'heavy', label: 'Heavy', group: 'General' },
+                { key: 'bugnest', label: 'Bug Nest', group: 'Terminids' },
+                { key: 'charger', label: 'Charger', group: 'Terminids' },
+                { key: 'biletitan', label: 'Bile Titan', group: 'Terminids' },
+                { key: 'factory', label: 'Factory', group: 'Automatons' },
+                { key: 'hulk', label: 'Hulk', group: 'Automatons' },
+                { key: 'strider', label: 'Strider', group: 'Automatons' },
+                { key: 'warpship', label: 'Warp Ship', group: 'Illuminates' },
+                { key: 'harvester', label: 'Harvester', group: 'Illuminates' },
+                { key: 'voteless', label: 'Voteless', group: 'Illuminates' }
+            ]
+        };
+
+        let selectedLoadout = { primary: null, secondary: null, grenade: null, stratagems: [] };
+        let currentFaction = 'terminids';
+
+        function getSlotBadge(slot) {
+            if (slot === 'support+backpack') return '<span class="slot-badge support-badge">SUPPORT</span><span class="slot-badge backpack-badge">BACKPACK</span>';
+            if (slot === 'support') return '<span class="slot-badge support-badge">SUPPORT</span>';
+            if (slot === 'backpack') return '<span class="slot-badge backpack-badge">BACKPACK</span>';
+            return '';
+        }
+
+        function renderTable() {
+            const table = document.getElementById('main-table');
+            const columns = columnsByFaction[currentFaction];
+            const selectedWarbonds = Array.from(document.querySelectorAll('.warbond-filter:checked')).map(cb => cb.value);
+
+            // Build header
+            const groups = [...new Set(columns.map(c => c.group))];
+            const headerHTML = `
+                <thead>
+                    <tr>
+                        <th rowspan="2">Loadout Option</th>
+                        ${groups.map(g => {
+                            const count = columns.filter(c => c.group === g).length;
+                            return `<th colspan="${count}" class="header-group">${g}</th>`;
+                        }).join('')}
+                    </tr>
+                    <tr>
+                        ${columns.map(c => `<th>${c.label}</th>`).join('')}
+                    </tr>
+                </thead>
+            `;
+
+            // Build body
+            let bodyHTML = '<tbody>';
+            
+            ['primary', 'secondary', 'grenade', 'stratagem'].forEach(category => {
+                const categoryName = category === 'stratagem' ? 'STRATAGEMS (Select up to 4)' : category.toUpperCase() + ' WEAPONS';
+                bodyHTML += `<tr class="category-header"><td colspan="${columns.length + 1}">${categoryName}</td></tr>`;
+
+                weapons[category].filter(w => selectedWarbonds.includes(w.warbond)).forEach(weapon => {
+                    const isSelected = category === 'stratagem' ? 
+                        selectedLoadout.stratagems.includes(weapon.name) : 
+                        selectedLoadout[category] === weapon.name;
+                    
+                    bodyHTML += `
+                        <tr class="weapon-row ${isSelected ? 'selected-row' : ''}" 
+                            data-category="${category}" 
+                            data-weapon="${weapon.name}"
+                            style="cursor: pointer;">
+                            <td class="weapon-name">${weapon.name}${weapon.slot ? getSlotBadge(weapon.slot) : ''}</td>
+                            ${columns.map(c => `<td class="${weapon[c.key]}"></td>`).join('')}
+                        </tr>
+                    `;
+                });
+            });
+
+            // Summary row
+            bodyHTML += `
+                <tr class="summary-row" id="summary-row">
+                    <td>YOUR COVERAGE</td>
+                    ${columns.map(c => `<td id="summary-${c.key}"></td>`).join('')}
+                </tr>
+            `;
+            bodyHTML += '</tbody>';
+
+            table.innerHTML = headerHTML + bodyHTML;
+
+            // Add click handlers
+            document.querySelectorAll('.weapon-row').forEach(row => {
+                row.addEventListener('click', () => {
+                    const category = row.dataset.category;
+                    const weaponName = row.dataset.weapon;
+                    selectWeapon(category, weaponName);
+                    renderTable();
+                });
+            });
+
+            updateSummary();
+        }
+
+        function selectWeapon(category, weaponName) {
+            if (category === 'stratagem') {
+                const idx = selectedLoadout.stratagems.indexOf(weaponName);
+                if (idx > -1) {
+                    selectedLoadout.stratagems.splice(idx, 1);
+                } else if (selectedLoadout.stratagems.length < 4) {
+                    selectedLoadout.stratagems.push(weaponName);
+                }
+            } else {
+                if (selectedLoadout[category] === weaponName) {
+                    selectedLoadout[category] = null;
+                } else {
+                    selectedLoadout[category] = weaponName;
+                }
+            }
+            checkLoadoutConflicts();
+        }
+
+        function updateSummary() {
+            const columns = columnsByFaction[currentFaction];
+            
+            columns.forEach(col => {
+                const summaryCell = document.getElementById(`summary-${col.key}`);
+                if (!summaryCell) return;
+                
+                let bestRating = 'red';
+                
+                Object.entries(selectedLoadout).forEach(([category, selected]) => {
+                    if (category === 'stratagems') {
+                        selected.forEach(weaponName => {
+                            const weapon = weapons.stratagem.find(w => w.name === weaponName);
+                            if (weapon && weapon[col.key] === 'green') bestRating = 'green';
+                            else if (weapon && weapon[col.key] === 'yellow' && bestRating !== 'green') bestRating = 'yellow';
+                        });
+                    } else if (selected) {
+                        const weapon = weapons[category].find(w => w.name === selected);
+                        if (weapon && weapon[col.key] === 'green') bestRating = 'green';
+                        else if (weapon && weapon[col.key] === 'yellow' && bestRating !== 'green') bestRating = 'yellow';
+                    }
+                });
+                
+                summaryCell.className = bestRating;
+            });
+        }
+
+        function checkLoadoutConflicts() {
+            const warnings = [];
+            const selectedStratagems = selectedLoadout.stratagems.map(name => 
+                weapons.stratagem.find(w => w.name === name)
+            );
+
+            const backpackStratagems = selectedStratagems.filter(s => 
+                s && (s.slot === 'backpack' || s.slot === 'support+backpack')
+            );
+            
+            if (backpackStratagems.length > 1) {
+                warnings.push({
+                    type: 'error',
+                    message: `You have ${backpackStratagems.length} stratagems that use the backpack slot, but you can only use ONE backpack at a time!`,
+                    items: backpackStratagems.map(s => s.name)
+                });
+            }
+
+            const supportWithBackpack = selectedStratagems.filter(s => s && s.slot === 'support+backpack');
+            const backpackOnly = selectedStratagems.filter(s => s && s.slot === 'backpack');
+            
+            if (supportWithBackpack.length > 0 && backpackOnly.length > 0) {
+                warnings.push({
+                    type: 'warning',
+                    message: 'You have a support weapon that needs a backpack AND a separate backpack stratagem. The support weapon will be slower to reload without its backpack!',
+                    items: [...supportWithBackpack.map(s => s.name + ' (needs backpack)'), ...backpackOnly.map(s => s.name)]
+                });
+            }
+
+            const warningBox = document.getElementById('warning-box');
+            const warningContent = document.getElementById('warning-content');
+            
+            if (warnings.length > 0) {
+                warningBox.classList.add('show');
+                warningContent.innerHTML = warnings.map(w => `
+                    <div class="warning-item">
+                        <strong>${w.type === 'error' ? '❌' : '⚠️'} ${w.message}</strong>
+                        <div style="margin-top: 5px; font-size: 12px;">
+                            ${w.items.map(item => `• ${item}`).join('<br>')}
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                warningBox.classList.remove('show');
+            }
+        }
+
+        document.getElementById('faction-select').addEventListener('change', (e) => {
+            currentFaction = e.target.value;
+            renderTable();
+        });
+
+        document.querySelectorAll('.warbond-filter').forEach(cb => {
+            cb.addEventListener('change', renderTable);
+        });
+
+        renderTable();
+    </script>
+</body>
+</html>
