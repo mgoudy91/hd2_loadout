@@ -1,0 +1,13 @@
+- armor
+
+- secondard weapon categories
+
+- grenade categories
+
+- warbonds with images
+
+- Ability for users to overwrite raitings, saved in local
+- ability for users to save their warbonds to local
+
+
+- users ratings 
