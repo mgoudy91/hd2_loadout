@@ -1,5 +1,5 @@
 {
-  "totalItems": 122,
+  "totalItems": 127,
   "invalidWarbonds": [],
   "duplicates": [],
   "crossCategoryDuplicates": [],
@@ -7,9 +7,9 @@
   "defaultGrantedCandidates": [],
   "primariesMissingType": [],
   "itemsByCategoryCount": {
-    "primary": 37,
+    "primary": 38,
     "secondary": 20,
-    "grenade": 17,
-    "stratagem": 48
+    "grenade": 18,
+    "stratagem": 51
   }
 }

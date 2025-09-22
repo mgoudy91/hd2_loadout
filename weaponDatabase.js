@@ -217,12 +217,19 @@ const weapons = {
         // Dust Devils Premium Warbond - Placeholder entries (details TBD)
   // Removed Dust Devil placeholder primary; replaced with concrete entries above (AR-2 Coyote, etc.)
           
-        // Borderline Justice
+    // Borderline Justice
   { name: "R-6 Deadeye", warbond: "borderline-justice", type: "Marksman Rifle",
-          light: "green", medium: "green", heavy: "red",
-          bugnest: "red", charger: "yellow", biletitan: "red",
-          factory: "red", hulk: "yellow", strider: "yellow",
-          warpship: "red", harvester: "yellow", voteless: "green" }
+      light: "green", medium: "green", heavy: "red",
+      bugnest: "red", charger: "yellow", biletitan: "red",
+      factory: "red", hulk: "yellow", strider: "yellow",
+      warpship: "red", harvester: "yellow", voteless: "green" },
+
+    // Force of Law Premium Warbond - Page additions
+  { name: "AR-32 Pacifier", warbond: "force-of-law", type: "Assault Rifle",
+      light: "green", medium: "green", heavy: "red",
+      bugnest: "red", charger: "yellow", biletitan: "red",
+      factory: "red", hulk: "yellow", strider: "yellow",
+      warpship: "red", harvester: "yellow", voteless: "green" }
     ],
     secondary: [
         // Free/Base Game
@@ -444,6 +451,11 @@ const weapons = {
           bugnest: "red", charger: "red", biletitan: "red",
           factory: "red", hulk: "red", strider: "red",
           warpship: "red", harvester: "red", voteless: "red" },
+  { name: "G-31 Arc", warbond: "control-group", type: "Throwable", slot: "grenade",
+    light: "green", medium: "yellow", heavy: "red",
+    bugnest: "green", charger: "yellow", biletitan: "red",
+    factory: "green", hulk: "yellow", strider: "red",
+    warpship: "green", harvester: "red", voteless: "green" },
         
         // Dust Devils Premium Warbond - Placeholder entries (details TBD)
   { name: "S-11 Speargun", warbond: "dust-devils", type: "Support", slot: "support",
@@ -451,16 +463,17 @@ const weapons = {
     bugnest: "green", charger: "yellow", biletitan: "red",
     factory: "green", hulk: "yellow", strider: "yellow",
     warpship: "green", harvester: "yellow", voteless: "green" },
+  // Dust Devils stratagems: ensure support stratagems are present as selectable stratagem entries where applicable
+  { name: "MS-11 Solo Silo", warbond: "dust-devils", slot: "support", type: "Support",
+    light: "green", medium: "green", heavy: "green",
+    bugnest: "green", charger: "green", biletitan: "green",
+    factory: "green", hulk: "green", strider: "green",
+    warpship: "green", harvester: "green", voteless: "green" },
   { name: "EAT-700 Expendable Napalm", warbond: "dust-devils", type: "Support", slot: "support",
     light: "green", medium: "yellow", heavy: "red",
     bugnest: "green", charger: "yellow", biletitan: "red",
     factory: "green", hulk: "yellow", strider: "red",
     warpship: "green", harvester: "red", voteless: "green" },
-  { name: "MS-11 Solo Silo", warbond: "dust-devils", type: "Support", slot: "support",
-    light: "green", medium: "green", heavy: "green",
-    bugnest: "green", charger: "green", biletitan: "green",
-    factory: "green", hulk: "green", strider: "green",
-    warpship: "green", harvester: "green", voteless: "green" },
   { name: "G-7 Pineapple", warbond: "dust-devils", type: "Special", slot: "none",
     light: "green", medium: "yellow", heavy: "red",
     bugnest: "green", charger: "yellow", biletitan: "red",
@@ -739,6 +752,23 @@ const weapons = {
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "yellow",
           warpship: "green", harvester: "yellow", voteless: "green" },
+
+        // Force of Law Premium Warbond - stratagems
+        { name: "GL-52 De-Escalator", warbond: "force-of-law", slot: "support",
+          light: "green", medium: "green", heavy: "red",
+          bugnest: "red", charger: "yellow", biletitan: "red",
+          factory: "green", hulk: "yellow", strider: "yellow",
+          warpship: "green", harvester: "yellow", voteless: "green" },
+        { name: "AX/ARC-3 \"Guard Dog\" K-9", warbond: "force-of-law", slot: "backpack", type: "Backpack",
+          light: "green", medium: "green", heavy: "red",
+          bugnest: "green", charger: "yellow", biletitan: "red",
+          factory: "green", hulk: "yellow", strider: "yellow",
+          warpship: "green", harvester: "yellow", voteless: "green" },
+        { name: "G-109 Urchin", warbond: "force-of-law", type: "Throwable", slot: "grenade",
+          light: "green", medium: "yellow", heavy: "red",
+          bugnest: "green", charger: "yellow", biletitan: "red",
+          factory: "green", hulk: "yellow", strider: "red",
+          warpship: "green", harvester: "red", voteless: "green" },
         
   // Dust Devils Premium Warbond - stratagems handled above; grenade entries kept separately
     ]
