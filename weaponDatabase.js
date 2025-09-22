@@ -2,7 +2,14 @@
 
 // Weapon database with all stats
 const weapons = {
-    primary: [
+  // top-level list of stratagems granted to all players (not selectable picks)
+  grantedStratagems: [
+    { name: "Resupply", warbond: "free", slot: "none", defaultGranted: true, notes: "Granted to all players" },
+    { name: "Reinforce", warbond: "free", slot: "none", defaultGranted: true, notes: "Granted to all players" },
+    { name: "Hellbomb", warbond: "free", slot: "none", defaultGranted: true, notes: "Granted to all players" },
+    { name: "SEAF Artillery", warbond: "free", slot: "none", defaultGranted: true, notes: "Granted to all players" }
+  ],
+  primary: [
         // Free/Base Game
         { name: "AR-23 Liberator", warbond: "free", type: "Assault Rifle",
           light: "green", medium: "red", heavy: "red",
@@ -158,64 +165,60 @@ const weapons = {
           warpship: "green", harvester: "red", voteless: "green" },
           
         // Truth Enforcers
-        { name: "SMG-32 Reprimand", warbond: "truth-enforcers",
+  { name: "SMG-32 Reprimand", warbond: "truth-enforcers", type: "Submachine Gun",
           light: "green", medium: "green", heavy: "red",
           bugnest: "red", charger: "yellow", biletitan: "red",
           factory: "red", hulk: "yellow", strider: "yellow",
           warpship: "red", harvester: "yellow", voteless: "green" },
-        { name: "SG-20 Halt", warbond: "truth-enforcers",
+  { name: "SG-20 Halt", warbond: "truth-enforcers", type: "Shotgun",
           light: "green", medium: "green", heavy: "red",
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "yellow",
           warpship: "green", harvester: "yellow", voteless: "green" },
           
         // Servants of Freedom
-        { name: "Las-17 Double-Edge Sickle", warbond: "servants-freedom",
+  { name: "Las-17 Double-Edge Sickle", warbond: "servants-freedom", type: "Energy-Based",
           light: "green", medium: "green", heavy: "green",
           bugnest: "red", charger: "yellow", biletitan: "yellow",
           factory: "red", hulk: "yellow", strider: "yellow",
           warpship: "red", harvester: "yellow", voteless: "green" },
           
         // Masters of Ceremony
-        { name: "R-2 Amendment", warbond: "masters-ceremony",
+  { name: "R-2 Amendment", warbond: "masters-ceremony", type: "Marksman Rifle",
           light: "green", medium: "red", heavy: "red",
           bugnest: "red", charger: "red", biletitan: "red",
           factory: "red", hulk: "red", strider: "red",
           warpship: "red", harvester: "red", voteless: "green" },
           
         // Control Group Premium Warbond - Placeholder entries (details TBD)
-        { name: "Placeholder Primary", warbond: "control-group",
-          light: "yellow", medium: "green", heavy: "red",
+  { name: "VG-70 Variable", warbond: "control-group", type: "Special",
+          light: "green", medium: "yellow", heavy: "red",
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "red",
           warpship: "green", harvester: "red", voteless: "yellow" },
         
         // ODST Legendary Warbond (Halo Crossover - 1,500 SC)
-        { name: "MA5C Assault Rifle", warbond: "odst",
+  { name: "MA5C Assault Rifle", warbond: "odst", type: "Assault Rifle",
           light: "green", medium: "green", heavy: "yellow",
           bugnest: "yellow", charger: "green", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "green",
           warpship: "green", harvester: "yellow", voteless: "green" },
-        { name: "M7S SMG", warbond: "odst",
+  { name: "M7S SMG", warbond: "odst", type: "Submachine Gun",
           light: "green", medium: "green", heavy: "red",
           bugnest: "red", charger: "red", biletitan: "red",
           factory: "yellow", hulk: "red", strider: "red",
           warpship: "yellow", harvester: "red", voteless: "green" },
-        { name: "M90A Shotgun", warbond: "odst",
+  { name: "M90A Shotgun", warbond: "odst", type: "Shotgun",
           light: "green", medium: "green", heavy: "yellow",
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "red", hulk: "red", strider: "red",
           warpship: "red", harvester: "red", voteless: "yellow" },
         
         // Dust Devils Premium Warbond - Placeholder entries (details TBD)
-        { name: "Dust Devil Rifle", warbond: "dust-devils",
-          light: "green", medium: "yellow", heavy: "red",
-          bugnest: "green", charger: "yellow", biletitan: "red",
-          factory: "green", hulk: "yellow", strider: "red",
-          warpship: "green", harvester: "red", voteless: "yellow" },
+  // Removed Dust Devil placeholder primary; replaced with concrete entries above (AR-2 Coyote, etc.)
           
         // Borderline Justice
-        { name: "R-6 Deadeye", warbond: "borderline-justice",
+  { name: "R-6 Deadeye", warbond: "borderline-justice", type: "Marksman Rifle",
           light: "green", medium: "green", heavy: "red",
           bugnest: "red", charger: "yellow", biletitan: "red",
           factory: "red", hulk: "yellow", strider: "yellow",
@@ -312,11 +315,11 @@ const weapons = {
           warpship: "red", harvester: "yellow", voteless: "green" },
           
         // Control Group Premium Warbond - Placeholder entries (details TBD)
-  { name: "Placeholder Pistol", warbond: "control-group", type: "Pistol",
-          light: "green", medium: "yellow", heavy: "red",
-          bugnest: "red", charger: "yellow", biletitan: "red",
-          factory: "red", hulk: "yellow", strider: "red",
-          warpship: "red", harvester: "red", voteless: "green" },
+  { name: "PLAS-45 Epoch", warbond: "control-group", type: "Support",
+          light: "green", medium: "green", heavy: "red",
+          bugnest: "green", charger: "yellow", biletitan: "red",
+          factory: "green", hulk: "yellow", strider: "yellow",
+          warpship: "green", harvester: "yellow", voteless: "green" },
         
         // ODST Legendary Warbond (Halo Crossover - 1,500 SC)
   { name: "M6C/SOCOM Pistol", warbond: "odst", type: "Pistol",
@@ -326,11 +329,11 @@ const weapons = {
           warpship: "red", harvester: "red", voteless: "green" },
         
         // Dust Devils Premium Warbond - Placeholder entries (details TBD)
-  { name: "Dust Devil Revolver", warbond: "dust-devils", type: "Revolver",
-          light: "green", medium: "yellow", heavy: "red",
-          bugnest: "red", charger: "yellow", biletitan: "red",
-          factory: "red", hulk: "yellow", strider: "red",
-          warpship: "red", harvester: "red", voteless: "green" },
+  { name: "AR-2 Coyote", warbond: "dust-devils", type: "Assault Rifle",
+          light: "green", medium: "green", heavy: "red",
+          bugnest: "green", charger: "yellow", biletitan: "red",
+          factory: "green", hulk: "yellow", strider: "yellow",
+          warpship: "green", harvester: "yellow", voteless: "green" },
           
         // Borderline Justice
   { name: "Las-58 Talon", warbond: "borderline-justice", type: "Special",
@@ -436,18 +439,33 @@ const weapons = {
           warpship: "green", harvester: "red", voteless: "green" },
           
         // Control Group Premium Warbond - Placeholder entries (details TBD)
-  { name: "Placeholder Grenade", warbond: "control-group", type: "Standard",
-          light: "green", medium: "yellow", heavy: "red",
-          bugnest: "green", charger: "yellow", biletitan: "red",
-          factory: "green", hulk: "yellow", strider: "red",
-          warpship: "green", harvester: "red", voteless: "green" },
+  { name: "LIFT-182 Warp Pack", warbond: "control-group", type: "Backpack", slot: "backpack",
+          light: "red", medium: "red", heavy: "red",
+          bugnest: "red", charger: "red", biletitan: "red",
+          factory: "red", hulk: "red", strider: "red",
+          warpship: "red", harvester: "red", voteless: "red" },
         
         // Dust Devils Premium Warbond - Placeholder entries (details TBD)
-  { name: "Dust Devil Explosive", warbond: "dust-devils", type: "Standard",
-          light: "green", medium: "yellow", heavy: "red",
-          bugnest: "green", charger: "yellow", biletitan: "red",
-          factory: "green", hulk: "yellow", strider: "red",
-          warpship: "green", harvester: "red", voteless: "green" }
+  { name: "S-11 Speargun", warbond: "dust-devils", type: "Support", slot: "support",
+    light: "green", medium: "green", heavy: "red",
+    bugnest: "green", charger: "yellow", biletitan: "red",
+    factory: "green", hulk: "yellow", strider: "yellow",
+    warpship: "green", harvester: "yellow", voteless: "green" },
+  { name: "EAT-700 Expendable Napalm", warbond: "dust-devils", type: "Support", slot: "support",
+    light: "green", medium: "yellow", heavy: "red",
+    bugnest: "green", charger: "yellow", biletitan: "red",
+    factory: "green", hulk: "yellow", strider: "red",
+    warpship: "green", harvester: "red", voteless: "green" },
+  { name: "MS-11 Solo Silo", warbond: "dust-devils", type: "Support", slot: "support",
+    light: "green", medium: "green", heavy: "green",
+    bugnest: "green", charger: "green", biletitan: "green",
+    factory: "green", hulk: "green", strider: "green",
+    warpship: "green", harvester: "green", voteless: "green" },
+  { name: "G-7 Pineapple", warbond: "dust-devils", type: "Special", slot: "none",
+    light: "green", medium: "yellow", heavy: "red",
+    bugnest: "green", charger: "yellow", biletitan: "red",
+    factory: "green", hulk: "yellow", strider: "red",
+    warpship: "green", harvester: "red", voteless: "green" }
     ],
     stratagem: [
         // Support Weapons - Free/Base Game
@@ -512,12 +530,8 @@ const weapons = {
           factory: "green", hulk: "yellow", strider: "yellow",
           warpship: "green", harvester: "yellow", voteless: "green" },
           
-        // Support Weapons - Cutting Edge
-        { name: "LAS-16 Sickle", warbond: "cutting-edge", slot: "support",
-          light: "green", medium: "red", heavy: "red",
-          bugnest: "red", charger: "red", biletitan: "red",
-          factory: "red", hulk: "red", strider: "red",
-          warpship: "red", harvester: "red", voteless: "green" },
+  // Support Weapons - Cutting Edge
+  // (Removed duplicate stratagem entry for LAS-16 Sickle; LAS-16 is a primary weapon)
           
         // Support Weapons - Democratic Detonation
         { name: "airburst Rocket Launcher", warbond: "democratic-detonation", slot: "support",
@@ -533,12 +547,8 @@ const weapons = {
           factory: "red", hulk: "yellow", strider: "yellow",
           warpship: "red", harvester: "yellow", voteless: "green" },
           
-        // Support Weapons - Freedom's Flame  
-        { name: "FLAM-66 Torcher", warbond: "freedom-flame", slot: "support",
-          light: "green", medium: "red", heavy: "red",
-          bugnest: "green", charger: "red", biletitan: "red",
-          factory: "green", hulk: "red", strider: "red",
-          warpship: "green", harvester: "red", voteless: "green" },
+  // Support Weapons - Freedom's Flame  
+  // (Removed duplicate stratagem entry for FLAM-66 Torcher; FLAM-66 is a primary weapon)
           
         // Orbital Stratagems - Free/Base Game
         { name: "Orbital Precision Strike", warbond: "free", slot: "none",
@@ -661,28 +671,8 @@ const weapons = {
           factory: "yellow", hulk: "yellow", strider: "yellow",
           warpship: "yellow", harvester: "yellow", voteless: "green" },
           
-        // Supply Stratagems - Free/Base Game
-        { name: "Resupply", warbond: "free", slot: "none",
-          light: "red", medium: "red", heavy: "red",
-          bugnest: "red", charger: "red", biletitan: "red",
-          factory: "red", hulk: "red", strider: "red",
-          warpship: "red", harvester: "red", voteless: "green" },
-        { name: "Reinforce", warbond: "free", slot: "none",
-          light: "red", medium: "red", heavy: "red",
-          bugnest: "red", charger: "red", biletitan: "red",
-          factory: "red", hulk: "red", strider: "red",
-          warpship: "red", harvester: "red", voteless: "green" },
-        { name: "Hellbomb", warbond: "free", slot: "none",
-          light: "green", medium: "green", heavy: "green",
-          bugnest: "green", charger: "green", biletitan: "green",
-          factory: "green", hulk: "green", strider: "green",
-          warpship: "green", harvester: "green", voteless: "green" },
-        { name: "SEAF Artillery", warbond: "free", slot: "none",
-          light: "green", medium: "green", heavy: "green",
-          bugnest: "green", charger: "green", biletitan: "green",
-          factory: "green", hulk: "green", strider: "green",
-          warpship: "green", harvester: "green", voteless: "green" },
-          
+  // Supply Stratagems - Free/Base Game (moved default-granted items to top-level grantedStratagems)
+        
         // Backpacks - Free/Base Game
         { name: "B-1 Supply Pack", warbond: "free", slot: "backpack",
           light: "red", medium: "red", heavy: "red",
@@ -744,18 +734,13 @@ const weapons = {
           warpship: "green", harvester: "yellow", voteless: "green" },
           
         // Control Group Premium Warbond - Placeholder entries (details TBD)
-        { name: "Placeholder Stratagem", warbond: "control-group", slot: "support",
+        { name: "A/LAS-98 Laser Sentry", warbond: "control-group", slot: "support", type: "Sentry",
           light: "green", medium: "yellow", heavy: "red",
           bugnest: "green", charger: "yellow", biletitan: "red",
           factory: "green", hulk: "yellow", strider: "yellow",
           warpship: "green", harvester: "yellow", voteless: "green" },
         
-        // Dust Devils Premium Warbond - Placeholder entries (details TBD)
-        { name: "Dust Storm", warbond: "dust-devils", slot: "none",
-          light: "yellow", medium: "yellow", heavy: "red",
-          bugnest: "green", charger: "yellow", biletitan: "red",
-          factory: "green", hulk: "yellow", strider: "red",
-          warpship: "green", harvester: "red", voteless: "green" }
+  // Dust Devils Premium Warbond - stratagems handled above; grenade entries kept separately
     ]
 };
 

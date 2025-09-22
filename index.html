@@ -399,6 +399,7 @@
             const table = document.getElementById('main-table');
             const columns = columnsByFaction[currentFaction];
             const selectedWarbonds = Array.from(document.querySelectorAll('.warbond-filter:checked')).map(cb => cb.value);
+            const grantedNames = (weapons.grantedStratagems || []).map(w => w.name);
 
             // Build header
             const groups = [...new Set(columns.map(c => c.group))];
@@ -544,7 +545,8 @@
                         });
                     } else {
                         // Stratagems and any other categories remain flat
-                        weapons[category].filter(w => selectedWarbonds.includes(w.warbond)).forEach(weapon => {
+                        // Exclude granted stratagems from selectable list
+                        weapons[category].filter(w => selectedWarbonds.includes(w.warbond) && !grantedNames.includes(w.name)).forEach(weapon => {
                             const isWeaponSelected = category === 'stratagem' ? 
                                 selectedLoadout.stratagems.includes(weapon.name) : 
                                 selectedLoadout[category] === weapon.name;
@@ -627,8 +629,13 @@
                 
                 Object.entries(selectedLoadout).forEach(([category, selected]) => {
                     if (category === 'stratagems') {
-                        selected.forEach(weaponName => {
-                            const weapon = weapons.stratagem.find(w => w.name === weaponName);
+                        // include default granted stratagems in coverage
+                        const allStratagemNames = [
+                            ...selected,
+                            ...(weapons.grantedStratagems || []).map(w => w.name)
+                        ];
+                        allStratagemNames.forEach(weaponName => {
+                            const weapon = weapons.stratagem.find(w => w.name === weaponName) || (weapons.grantedStratagems || []).find(w => w.name === weaponName);
                             if (weapon && weapon[col.key] === 'green') bestRating = 'green';
                             else if (weapon && weapon[col.key] === 'yellow' && bestRating !== 'green') bestRating = 'yellow';
                         });
@@ -645,9 +652,11 @@
 
         function checkLoadoutConflicts() {
             const warnings = [];
-            const selectedStratagems = selectedLoadout.stratagems.map(name => 
-                weapons.stratagem.find(w => w.name === name)
-            );
+            // include granted stratagems when checking for conflicts
+            const selectedStratagems = [
+                ...selectedLoadout.stratagems.map(name => weapons.stratagem.find(w => w.name === name)),
+                ...(weapons.grantedStratagems || [])
+            ].filter(Boolean);
 
             const backpackStratagems = selectedStratagems.filter(s => 
                 s && (s.slot === 'backpack' || s.slot === 'support+backpack')
