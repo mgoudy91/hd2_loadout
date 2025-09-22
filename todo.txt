@@ -1,3 +1,5 @@
+- remove get weapon type func
+
 - armor
 
 - boosters
