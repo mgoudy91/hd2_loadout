@@ -252,3 +252,12 @@ hl2_loadout/
 *Last Updated: September 22, 2025*
 *Project Version: Advanced UX Phase*
 *Recent Changes: Added collapsible sections, weapon type grouping, and enhanced UI interactions*
+
+### Recent Delta (Sep 22, 2025)
+- Added Force of Law warbond items to `weaponDatabase.js` (AR-32 Pacifier primary, GL-52 De-Escalator stratagem, AX/ARC-3 "Guard Dog" backpack, G-109 Urchin throwable).
+- Added `force-of-law` checkbox to `index.html` warbond filters so the new warbond is selectable in the UI.
+- Ensured `control-group` support-type primaries (e.g., `PLAS-45 Epoch`) render by adding 'Support' to primary `typeOrder` in `index.html`.
+- Ran `scripts/validate_weapons.py` after edits — audit indicates no invalid warbonds/placeholders/duplicates or missing primary `type` fields; report written to `reports/weapon-audit.json`.
+- Updated todo list states; the user will perform the final commit.
+
+These changes were made conservatively with placeholder effectiveness values where community data was limited. If you want more accurate ratings or additional notes per item, provide preferred sources and I'll update them.
