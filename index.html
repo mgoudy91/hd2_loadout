@@ -374,11 +374,19 @@
     </div>
     
     <script>
-    // Import the weapons database from weaponDatabase.js
-    // (Make sure this script tag is after the weaponDatabase.js script tag in the HTML)
-    // ...existing code...
+    // Load the weapons database from weaponDatabase.json
+    let weapons = null;
+    let weaponsLoaded = false;
+    fetch('weaponDatabase.json')
+        .then(response => response.json())
+        .then(data => {
+            weapons = data;
+            weaponsLoaded = true;
+            if (typeof renderTable === 'function') {
+                renderTable();
+            }
+        });
     </script>
-    <script src="weaponDatabase.js"></script>
     <script>
 
         const columnsByFaction = {
@@ -459,6 +467,7 @@
         }
 
         function renderTable() {
+            if (!weaponsLoaded) return;
             const table = document.getElementById('main-table');
             const columns = columnsByFaction[currentFaction];
             const selectedWarbonds = Array.from(document.querySelectorAll('.warbond-filter:checked')).map(cb => cb.value);
