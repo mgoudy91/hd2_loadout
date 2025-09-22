@@ -1,4 +1,3 @@
-// Columns by faction (moved from index.html)
 const columnsByFaction = {
     terminids: [
         { key: 'light', label: 'Light Pen', group: 'General' },
@@ -39,10 +38,6 @@ const columnsByFaction = {
         { key: 'voteless', label: 'Voteless', group: 'Illuminates' }
     ]
 };
-// ui.js - Modularized UI logic for Helldivers 2 Loadout Builder
-
-// Exported functions
-// Main UI logic moved from index.html
 
 
 function renderTable({ weapons, weaponsLoaded, selectedLoadout, currentFaction }) {
