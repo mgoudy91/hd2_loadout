@@ -23,6 +23,62 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        /* Override centering inside the warbond section so checkbox+label keep left alignment */
+        .warbond-section {
+            text-align: left;
+        }
+        .warbond-list {
+            justify-items: start;
+            text-align: left;
+        }
+        .controls-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .controls-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .faction-container {
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .warbond-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 6px 18px;
+            align-items: start;
+            justify-items: start;
+            max-width: 760px;
+            margin: 6px 0 12px 0;
+        }
+        .warbond-list label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffd700;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+        .warbond-list input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            accent-color: #4a7c59;
+        }
+        /* ensure long label text wraps nicely without shifting checkbox */
+        .warbond-list label span {
+            display: inline-block;
+            max-width: 100%;
+            word-break: break-word;
+        }
         
         .controls label {
             font-size: 16px;
@@ -260,45 +316,51 @@
     <h1>🎖️ Helldivers 2 Loadout Builder 🎖️</h1>
     
     <div class="controls">
-        <div style="margin-bottom: 10px;">
-            <label for="faction-select">Faction:</label>
-            <select id="faction-select">
-                <option value="terminids" selected>Terminids</option>
-                <option value="automatons">Automatons</option>
-                <option value="illuminates">Illuminates</option>
-                <option value="all">All Factions</option>
-            </select>
-        </div>
-        
-        <div class="warbond-section">
-            <label>Select Your Warbonds:</label><br>
-            <label><input type="checkbox" class="warbond-filter" value="free" checked> Base Game (Free)</label>
-            <label><input type="checkbox" class="warbond-filter" value="steeled-veterans"> Steeled Veterans</label>
-            <label><input type="checkbox" class="warbond-filter" value="cutting-edge"> Cutting Edge</label>
-            <label><input type="checkbox" class="warbond-filter" value="democratic-detonation"> Democratic Detonation</label>
-            <label><input type="checkbox" class="warbond-filter" value="polar-patriots"> Polar Patriots</label>
-            <label><input type="checkbox" class="warbond-filter" value="viper-commandos"> Viper Commandos</label>
-            <label><input type="checkbox" class="warbond-filter" value="freedom-flame"> Freedom's Flame</label>
-            <label><input type="checkbox" class="warbond-filter" value="chemical-agents"> Chemical Agents</label>
-            <label><input type="checkbox" class="warbond-filter" value="truth-enforcers"> Truth Enforcers</label>
-            <label><input type="checkbox" class="warbond-filter" value="urban-legends"> Urban Legends</label>
-            <label><input type="checkbox" class="warbond-filter" value="servants-freedom"> Servants of Freedom</label>
-            <label><input type="checkbox" class="warbond-filter" value="masters-ceremony"> Masters of Ceremony</label>
-            <label><input type="checkbox" class="warbond-filter" value="borderline-justice"> Borderline Justice</label>
-            <label><input type="checkbox" class="warbond-filter" value="control-group"> Control Group</label>
-            <label><input type="checkbox" class="warbond-filter" value="force-of-law"> Force of Law</label>
-            <label><input type="checkbox" class="warbond-filter" value="odst"> ODST (Legendary)</label>
-            <label><input type="checkbox" class="warbond-filter" value="dust-devils"> Dust Devils</label>
-            
-            <div class="warbond-buttons">
-                <button id="select-all-warbonds" class="warbond-btn">Select All</button>
-                <button id="select-none-warbonds" class="warbond-btn">Select None</button>
+        <div class="controls-inner">
+            <div class="warbond-section">
+                <label>Select Your Warbonds:</label>
+                <div class="warbond-list">
+                    <label><input type="checkbox" class="warbond-filter" value="free" checked><span>Base Game (Free)</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="steeled-veterans"><span>Steeled Veterans</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="cutting-edge"><span>Cutting Edge</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="democratic-detonation"><span>Democratic Detonation</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="polar-patriots"><span>Polar Patriots</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="viper-commandos"><span>Viper Commandos</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="freedom-flame"><span>Freedom's Flame</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="chemical-agents"><span>Chemical Agents</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="truth-enforcers"><span>Truth Enforcers</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="urban-legends"><span>Urban Legends</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="servants-freedom"><span>Servants of Freedom</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="masters-ceremony"><span>Masters of Ceremony</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="borderline-justice"><span>Borderline Justice</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="control-group"><span>Control Group</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="force-of-law"><span>Force of Law</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="odst"><span>ODST (Legendary)</span></label>
+                    <label><input type="checkbox" class="warbond-filter" value="dust-devils"><span>Dust Devils</span></label>
+                </div>
+
+                <div class="warbond-buttons">
+                    <button id="select-all-warbonds" class="warbond-btn">Select All</button>
+                    <button id="select-none-warbonds" class="warbond-btn">Select None</button>
+                </div>
             </div>
+
         </div>
-        
-        <div class="reset-buttons">
-            <button id="reset-loadout" class="reset-btn">Reset Selected Loadout</button>
-            <button id="reset-warbonds" class="reset-btn">Reset Selected Warbonds</button>
+
+        <div class="controls-footer">
+            <div class="reset-buttons">
+                <button id="reset-loadout" class="reset-btn">Reset Selected Loadout</button>
+            </div>
+
+            <div class="faction-container">
+                <label for="faction-select">Faction:</label>
+                <select id="faction-select">
+                    <option value="terminids" selected>Terminids</option>
+                    <option value="automatons">Automatons</option>
+                    <option value="illuminates">Illuminates</option>
+                    <option value="all">All Factions</option>
+                </select>
+            </div>
         </div>
     </div>
     
@@ -705,9 +767,95 @@
             renderTable();
         });
 
+        // Durable storage for warbond selections: prefer localStorage, fallback to cookies (30 days)
+        const STORAGE_KEY = 'hl2_selected_warbonds';
+
+        function setCookie(name, value, days) {
+            try {
+                const expires = new Date(Date.now() + (days || 30) * 864e5).toUTCString();
+                document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+            } catch (e) {
+                console.warn('Could not set cookie', e);
+            }
+        }
+
+        function getCookie(name) {
+            try {
+                return document.cookie.split('; ').reduce((r, v) => {
+                    const parts = v.split('=');
+                    return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+                }, undefined);
+            } catch (e) {
+                console.warn('Could not read cookie', e);
+                return undefined;
+            }
+        }
+
+        function saveWarbondSelections() {
+            const selected = Array.from(document.querySelectorAll('.warbond-filter'))
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+
+            // Try localStorage first
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(selected));
+                return;
+            } catch (e) {
+                // localStorage may be unavailable (strict privacy modes), fall back to cookies
+                console.warn('localStorage unavailable, falling back to cookies', e);
+            }
+
+            // Cookie fallback (30 days)
+            try {
+                setCookie(STORAGE_KEY, JSON.stringify(selected), 30);
+            } catch (e) {
+                console.warn('Could not save warbond selections to cookie', e);
+            }
+        }
+
+        function loadWarbondSelections() {
+            // Try localStorage first
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const values = JSON.parse(raw);
+                    if (Array.isArray(values)) {
+                        document.querySelectorAll('.warbond-filter').forEach(cb => {
+                            cb.checked = values.includes(cb.value);
+                        });
+                        return true;
+                    }
+                }
+            } catch (e) {
+                console.warn('Could not load from localStorage, trying cookies', e);
+            }
+
+            // Cookie fallback
+            try {
+                const rawCookie = getCookie(STORAGE_KEY);
+                if (!rawCookie) return false;
+                const values = JSON.parse(rawCookie);
+                if (!Array.isArray(values)) return false;
+                document.querySelectorAll('.warbond-filter').forEach(cb => {
+                    cb.checked = values.includes(cb.value);
+                });
+                return true;
+            } catch (e) {
+                console.warn('Could not load warbond selections from cookie', e);
+                return false;
+            }
+        }
+
+        // Attach change handlers: save to durable storage then rerender
         document.querySelectorAll('.warbond-filter').forEach(cb => {
-            cb.addEventListener('change', renderTable);
+            cb.addEventListener('change', () => {
+                saveWarbondSelections();
+                renderTable();
+            });
         });
+
+        // Attempt to restore saved selections on load; if none saved, keep defaults
+        loadWarbondSelections();
 
         // Reset button functionality
         document.getElementById('reset-loadout').addEventListener('click', () => {
@@ -724,19 +872,13 @@
             }
         });
 
-        document.getElementById('reset-warbonds').addEventListener('click', () => {
-            if (confirm('Are you sure you want to reset warbond selections? This will check all warbonds.')) {
-                document.querySelectorAll('.warbond-filter').forEach(cb => {
-                    cb.checked = true;
-                });
-                renderTable();
-            }
-        });
+    // Note: 'Reset Selected Warbonds' button removed in favor of the Select All / Select None controls
 
         document.getElementById('select-all-warbonds').addEventListener('click', () => {
             document.querySelectorAll('.warbond-filter').forEach(cb => {
                 cb.checked = true;
             });
+            saveWarbondSelections();
             renderTable();
         });
 
@@ -744,6 +886,7 @@
             document.querySelectorAll('.warbond-filter').forEach(cb => {
                 cb.checked = false;
             });
+            saveWarbondSelections();
             renderTable();
         });
 
