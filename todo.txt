@@ -1,8 +1,5 @@
 - armor
 
-- secondard weapon categories
-
-- grenade categories
 
 - warbonds with images
 
